@@ -5,15 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Pineapple Co. — Metas Agosto 2026</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-  :root {
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  :root{
     --bg:#0f0f0d;--surface:#1a1a17;--surface2:#222220;
     --border:#2e2e2a;--border2:#3a3a35;
     --text:#f0ede6;--muted:#7a7870;--muted2:#4a4844;
     --gold:#d4a853;--gold-dim:rgba(212,168,83,.12);
     --green:#4caf7d;--green-dim:rgba(76,175,125,.12);
-    --red:#e05c5c;--red-dim:rgba(224,92,92,.12);
-    --blue:#5b9cf6;--purple:#9b7fe8;--teal:#4ab5a0;--coral:#e07a5f;
+    --red:#e05c5c;--blue:#5b9cf6;
     --gab:#5b9cf6;--cin:#4ab5a0;--die:#e07a5f;--sit:#9b7fe8;
     --r:10px;--r-sm:6px;
   }
@@ -25,46 +24,55 @@
   .brand{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
   .page-title{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.1;}
   .page-sub{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5;}
-  .live-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-dim);border:1px solid rgba(76,175,125,.3);border-radius:99px;padding:5px 12px;font-size:11px;font-weight:600;color:var(--green);white-space:nowrap;}
-  .live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
-  /* STATUS BAR */
-  .status-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 16px;margin-bottom:14px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px;}
-  .status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
-  .status-dot.loading{background:var(--gold);animation:pulse 1s ease-in-out infinite;}
-  .status-dot.error{background:var(--red);}
-  /* KPIs */
+  .live-badge{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:5px 12px;font-size:11px;font-weight:600;white-space:nowrap;background:var(--gold-dim);border:1px solid rgba(212,168,83,.3);color:var(--gold);}
+  .live-badge.ok{background:var(--green-dim);border-color:rgba(76,175,125,.3);color:var(--green);}
+  .live-badge.err{background:rgba(224,92,92,.12);border-color:rgba(224,92,92,.3);color:var(--red);}
+  .ldot{width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  /* STATUS */
+  .sbar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:9px 16px;margin-bottom:14px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+  .sdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--gold);animation:pulse 1s infinite;}
+  .sdot.ok{background:var(--green);animation:none;}
+  .sdot.err{background:var(--red);animation:none;}
+  /* KPIS */
   .kgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
   .kcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;}
   .klbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px;}
   .kval{font-size:22px;font-weight:700;line-height:1;}
   .ksub{font-size:11px;color:var(--muted);margin-top:4px;}
-  /* VENDOR BARS */
+  /* VENDORS */
   .vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
   .vcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;position:relative;overflow:hidden;}
   .vcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-  .v-gab::before{background:var(--gab);}
-  .v-cin::before{background:var(--cin);}
-  .v-die::before{background:var(--die);}
-  .v-sit::before{background:var(--sit);}
+  .vg::before{background:var(--gab);}
+  .vc::before{background:var(--cin);}
+  .vd::before{background:var(--die);}
+  .vs::before{background:var(--sit);}
   .vname{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
   .vreal{font-size:20px;font-weight:700;margin-bottom:2px;}
   .vmeta{font-size:11px;color:var(--muted);margin-bottom:8px;}
   .vbar-bg{height:3px;background:var(--surface2);border-radius:99px;}
-  .vbar-fill{height:3px;border-radius:99px;transition:width .4s ease;}
+  .vbar-fill{height:3px;border-radius:99px;transition:width .4s;}
   /* PROGRESS */
-  .prog-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;}
-  .prog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .prog{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;}
+  .prog-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
   .prog-title{font-size:13px;font-weight:600;}
   .prog-pct{font-size:20px;font-weight:700;}
-  .prog-bar-bg{height:6px;background:var(--surface2);border-radius:99px;margin-bottom:10px;}
-  .prog-bar-fill{height:6px;border-radius:99px;transition:width .4s ease;}
+  .prog-bg{height:6px;background:var(--surface2);border-radius:99px;margin-bottom:10px;}
+  .prog-fill{height:6px;border-radius:99px;transition:width .4s;}
   .prog-sub{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);flex-wrap:wrap;gap:6px;}
+  /* HOW TO */
+  .how{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;}
+  .how-title{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
+  .how-step{display:flex;gap:12px;margin-bottom:10px;}
+  .how-step:last-child{margin-bottom:0;}
+  .how-num{width:22px;height:22px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(212,168,83,.3);color:var(--gold);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .how-text{font-size:12px;color:var(--muted);line-height:1.6;}
+  .how-text strong{color:var(--text);}
+  .how-text a{color:var(--gold);}
   /* TABLE */
-  .table-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;}
-  .table-head{padding:10px 16px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
-  .sheet-link{font-size:11px;color:var(--gold);text-decoration:none;font-weight:500;}
-  .sheet-link:hover{text-decoration:underline;}
+  .tcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;}
+  .thead-bar{padding:10px 16px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
   table{width:100%;border-collapse:collapse;table-layout:fixed;}
   th{padding:8px 6px;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;background:var(--surface2);border-bottom:1px solid var(--border);text-align:right;white-space:nowrap;}
   th:first-child{text-align:left;width:16%;}
@@ -84,340 +92,262 @@
   .tg{display:inline-block;font-size:9px;padding:1px 5px;border-radius:99px;font-weight:600;vertical-align:middle;margin-left:4px;}
   .fo{background:rgba(76,175,125,.15);color:var(--green);}
   .no{background:var(--surface2);color:var(--muted);}
-  .fr{background:rgba(224,92,92,.12);color:var(--red);}
   .va{background:rgba(212,168,83,.15);color:var(--gold);}
-  /* HOW TO */
-  .how-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;}
-  .how-title{font-size:12px;font-weight:600;color:var(--gold);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;}
-  .how-step{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;}
-  .how-step:last-child{margin-bottom:0;}
-  .how-num{width:22px;height:22px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(212,168,83,.3);color:var(--gold);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .how-text{font-size:12px;color:var(--muted);line-height:1.5;}
-  .how-text strong{color:var(--text);}
-  /* FOOTER */
+  /* BTN */
+  .btn{font-size:11px;font-family:inherit;padding:4px 12px;border:1px solid var(--border2);border-radius:var(--r-sm);cursor:pointer;background:transparent;color:var(--muted);font-weight:600;transition:all .15s;text-decoration:none;display:inline-block;}
+  .btn:hover{border-color:var(--gold);color:var(--gold);}
   .footer{text-align:center;font-size:11px;color:var(--muted2);margin-top:8px;padding-top:16px;border-top:1px solid var(--border);}
-  /* REFRESH BTN */
-  .refresh-btn{font-size:11px;font-family:inherit;padding:4px 12px;border:1px solid var(--border2);border-radius:var(--r-sm);cursor:pointer;background:transparent;color:var(--muted);font-weight:600;transition:all .15s;}
-  .refresh-btn:hover{border-color:var(--gold);color:var(--gold);}
   @media(max-width:640px){.kgrid,.vgrid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
 <div class="wrap">
-
-  <!-- HEADER -->
+ 
   <div class="header">
     <div>
       <div class="brand">Pineapple Co.</div>
       <div class="page-title">Metas · Agosto 2026</div>
-      <div class="page-sub">Gabriel R$235k · Cino R$235k · Diego R$300k · Site R$70k · Total R$840k<br>26 dias úteis · Sem feriados nacionais · Vale dia 20</div>
+      <div class="page-sub">Gabriel R$235k · Cino R$235k · Diego R$300k · Site R$70k · Total R$840k<br>26 dias úteis · Vale dia 20 · Atualiza automaticamente</div>
     </div>
-    <div class="live-badge">
-      <div class="live-dot" id="liveDot"></div>
-      <span id="liveText">Conectando...</span>
-    </div>
+    <div class="live-badge" id="badge"><div class="ldot"></div><span id="badgeTxt">Conectando...</span></div>
   </div>
-
-  <!-- STATUS -->
-  <div class="status-bar">
-    <div class="status-dot loading" id="statusDot"></div>
-    <span id="statusText">Carregando dados da planilha...</span>
-  </div>
-
-  <!-- KPIs -->
+ 
+  <div class="sbar"><div class="sdot" id="sDot"></div><span id="sTxt">Carregando dados...</span></div>
+ 
   <div class="kgrid" id="kpis">
-    <div class="kcard"><div class="klbl">Realizado</div><div class="kval">--</div><div class="ksub">aguardando dados</div></div>
+    <div class="kcard"><div class="klbl">Realizado</div><div class="kval">--</div><div class="ksub">aguardando</div></div>
     <div class="kcard"><div class="klbl">Saldo restante</div><div class="kval">--</div><div class="ksub">Meta R$840k</div></div>
     <div class="kcard"><div class="klbl">Dias lançados</div><div class="kval">--</div><div class="ksub">de 26 úteis</div></div>
     <div class="kcard"><div class="klbl">Dias restantes</div><div class="kval">--</div><div class="ksub">abertos</div></div>
   </div>
-
-  <!-- VENDOR BARS -->
+ 
   <div class="vgrid" id="vbars">
-    <div class="vcard v-gab"><div class="vname">Gabriel</div><div class="vreal">--</div><div class="vmeta">aguardando...</div><div class="vbar-bg"></div></div>
-    <div class="vcard v-cin"><div class="vname">Cino</div><div class="vreal">--</div><div class="vmeta">aguardando...</div><div class="vbar-bg"></div></div>
-    <div class="vcard v-die"><div class="vname">Diego</div><div class="vreal">--</div><div class="vmeta">aguardando...</div><div class="vbar-bg"></div></div>
-    <div class="vcard v-sit"><div class="vname">Site</div><div class="vreal">--</div><div class="vmeta">aguardando...</div><div class="vbar-bg"></div></div>
+    <div class="vcard vg"><div class="vname">Gabriel</div><div class="vreal">--</div><div class="vmeta">aguardando...</div><div class="vbar-bg"></div></div>
+    <div class="vcard vc"><div class="vname">Cino</div><div class="vreal">--</div><div class="vmeta">aguardando...</div><div class="vbar-bg"></div></div>
+    <div class="vcard vd"><div class="vname">Diego</div><div class="vreal">--</div><div class="vmeta">aguardando...</div><div class="vbar-bg"></div></div>
+    <div class="vcard vs"><div class="vname">Site</div><div class="vreal">--</div><div class="vmeta">aguardando...</div><div class="vbar-bg"></div></div>
   </div>
-
-  <!-- PROGRESS -->
-  <div class="prog-card" id="prog">
-    <div class="prog-header"><div class="prog-title">Progresso geral — agosto 2026</div><div class="prog-pct">--%</div></div>
-    <div class="prog-bar-bg"><div class="prog-bar-fill" style="width:0%;background:var(--gold);"></div></div>
+ 
+  <div class="prog" id="prog">
+    <div class="prog-hdr"><div class="prog-title">Progresso geral — agosto 2026</div><div class="prog-pct">--%</div></div>
+    <div class="prog-bg"><div class="prog-fill" style="width:0%;background:var(--gold);"></div></div>
     <div class="prog-sub"><span>Carregando...</span></div>
   </div>
-
-  <!-- HOW TO UPDATE -->
-  <div class="how-card">
+ 
+  <div class="how">
     <div class="how-title">Como atualizar os dados</div>
     <div class="how-step">
       <div class="how-num">1</div>
-      <div class="how-text">Abra a <strong><a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVGTG5ZIGlM9XfrH2qb0HWpfgov0NDP8J186uOaDzzy4cp7ko5PKUA3J7-JMNgW-Z4LQTZGSND0gbs/pub?gid=0&single=true&output=csv" target="_blank" style="color:var(--gold);">planilha no Google Sheets</a></strong> — acesse pelo link ou pelo Google Drive</div>
+      <div class="how-text">Abra a <strong><a href="https://docs.google.com/spreadsheets/d/1zzENuvR_hn9qBEo6kexMmTpO4o4rMoaguvxGVR-WaB4/edit" target="_blank">planilha Google Sheets</a></strong> e preencha os valores realizados de cada vendedor na linha do dia</div>
     </div>
     <div class="how-step">
       <div class="how-num">2</div>
-      <div class="how-text">Preencha os valores realizados de cada vendedor na linha do dia correspondente (coluna Gabriel, Cino, Diego, Site)</div>
+      <div class="how-text">O dashboard atualiza <strong>automaticamente a cada 60 segundos</strong> — ou clique em <strong>"↺ Atualizar"</strong> para ver na hora</div>
     </div>
     <div class="how-step">
       <div class="how-num">3</div>
-      <div class="how-text">Salve a planilha (automático no Google) e clique em <strong>"↺ Atualizar"</strong> aqui no dashboard — os dados aparecem em segundos</div>
+      <div class="how-text">Qualquer pessoa com o link <strong>milenaos.github.io/pineapple-metas</strong> vê os dados atualizados</div>
     </div>
   </div>
-
-  <!-- TABLE -->
-  <div class="table-card">
-    <div class="table-head">
+ 
+  <div class="tcard">
+    <div class="thead-bar">
       <span>Detalhamento por dia</span>
-      <div style="display:flex;gap:10px;align-items:center;">
-        <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1zzENuvR_hn9qBEo6kexMmTpO4o4rMoaguvxGVR-WaB4/edit" target="_blank">✏️ Editar planilha</a>
-        <button class="refresh-btn" onclick="loadData()">↺ Atualizar</button>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <a class="btn" href="https://docs.google.com/spreadsheets/d/1zzENuvR_hn9qBEo6kexMmTpO4o4rMoaguvxGVR-WaB4/edit" target="_blank">✏️ Editar planilha</a>
+        <button class="btn" onclick="loadData()">↺ Atualizar</button>
       </div>
     </div>
     <table>
       <thead><tr>
         <th style="text-align:left;">Dia</th>
-        <th class="cg">Gabriel</th>
-        <th class="cc">Cino</th>
-        <th class="cd">Diego</th>
-        <th class="cs">Site</th>
-        <th>Meta dia</th>
-        <th>Real.</th>
-        <th>Dif.</th>
+        <th class="cg">Gabriel</th><th class="cc">Cino</th><th class="cd">Diego</th><th class="cs">Site</th>
+        <th>Meta dia</th><th>Real.</th><th>Dif.</th>
       </tr></thead>
-      <tbody id="tbody"><tr><td colspan="8" style="text-align:center;padding:24px;color:var(--muted);">Carregando dados...</td></tr></tbody>
+      <tbody id="tbody"><tr><td colspan="8" style="text-align:center;padding:24px;color:var(--muted);">Carregando...</td></tr></tbody>
       <tfoot id="tfoot"></tfoot>
     </table>
   </div>
-
-  <div class="footer">Pineapple Co. · Dashboard Agosto 2026 · Atualiza direto do Google Sheets</div>
+ 
+  <div class="footer">Pineapple Co. · Dashboard Agosto 2026 · Dados via Google Sheets</div>
 </div>
-
+ 
 <script>
-var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRVGTG5ZIGlM9XfrH2qb0HWpfgov0NDP8J186uOaDzzy4cp7ko5PKUA3J7-JMNgW-Z4LQTZGSND0gbs/pub?gid=0&single=true&output=csv';
-var SHEET_EDIT = 'https://docs.google.com/spreadsheets/d/1zzENuvR_hn9qBEo6kexMmTpO4o4rMoaguvxGVR-WaB4/edit';
-
-var METAS = {gab:235000, cin:235000, die:300000, sit:70000};
+var API = 'https://script.google.com/macros/s/AKfycby-XWdbElqg_Myop4HhlW_Dov9DllO4qiX2d4qGyTLlU0Ygbt4crtrwqozU7_uZu8S6/exec';
+ 
+var METAS = {gab:235000,cin:235000,die:300000,sit:70000};
 var TOT = 840000;
 var VK = ['gab','cin','die','sit'];
-
 var PW = {
-  gab:{forte:1.45,normal:1.0,fraco:0.65,vale:1.55,fechado:0},
-  cin:{forte:1.45,normal:1.0,fraco:0.65,vale:1.55,fechado:0},
-  die:{forte:1.50,normal:1.0,fraco:0.60,vale:1.65,fechado:0},
-  sit:{forte:0.85,normal:1.0,fraco:0.90,vale:0.80,fechado:0.30}
+  gab:{forte:1.45,normal:1.0,vale:1.55},
+  cin:{forte:1.45,normal:1.0,vale:1.55},
+  die:{forte:1.50,normal:1.0,vale:1.65},
+  sit:{forte:0.85,normal:1.0,vale:0.80}
 };
-
 var DIAS = [
-  {d:1, lb:'Sáb 01',t:'forte', tg:'Abertura'},
+  {d:1, lb:'Sáb 01',t:'forte',tg:'Abertura'},
   {d:3, lb:'Seg 03',t:'normal',tg:''},
   {d:4, lb:'Ter 04',t:'normal',tg:''},
   {d:5, lb:'Qua 05',t:'normal',tg:''},
   {d:6, lb:'Qui 06',t:'normal',tg:''},
-  {d:7, lb:'Sex 07',t:'forte', tg:'Vésp. fds'},
-  {d:8, lb:'Sáb 08',t:'forte', tg:''},
+  {d:7, lb:'Sex 07',t:'forte',tg:'Vésp. fds'},
+  {d:8, lb:'Sáb 08',t:'forte',tg:''},
   {d:10,lb:'Seg 10',t:'normal',tg:''},
   {d:11,lb:'Ter 11',t:'normal',tg:''},
   {d:12,lb:'Qua 12',t:'normal',tg:''},
   {d:13,lb:'Qui 13',t:'normal',tg:''},
-  {d:14,lb:'Sex 14',t:'forte', tg:'Vésp. fds'},
-  {d:15,lb:'Sáb 15',t:'forte', tg:''},
+  {d:14,lb:'Sex 14',t:'forte',tg:'Vésp. fds'},
+  {d:15,lb:'Sáb 15',t:'forte',tg:''},
   {d:17,lb:'Seg 17',t:'normal',tg:''},
   {d:18,lb:'Ter 18',t:'normal',tg:''},
   {d:19,lb:'Qua 19',t:'normal',tg:''},
-  {d:20,lb:'Qui 20',t:'vale',  tg:'Vale'},
-  {d:21,lb:'Sex 21',t:'forte', tg:'Vésp. fds'},
-  {d:22,lb:'Sáb 22',t:'forte', tg:''},
+  {d:20,lb:'Qui 20',t:'vale', tg:'Vale'},
+  {d:21,lb:'Sex 21',t:'forte',tg:'Vésp. fds'},
+  {d:22,lb:'Sáb 22',t:'forte',tg:''},
   {d:24,lb:'Seg 24',t:'normal',tg:''},
   {d:25,lb:'Ter 25',t:'normal',tg:''},
   {d:26,lb:'Qua 26',t:'normal',tg:''},
   {d:27,lb:'Qui 27',t:'normal',tg:''},
-  {d:28,lb:'Sex 28',t:'forte', tg:'Vésp. fds'},
-  {d:29,lb:'Sáb 29',t:'forte', tg:''},
+  {d:28,lb:'Sex 28',t:'forte',tg:'Vésp. fds'},
+  {d:29,lb:'Sáb 29',t:'forte',tg:''},
   {d:31,lb:'Seg 31',t:'normal',tg:'Último dia'}
 ];
-
 var VC = [
-  {k:'gab',n:'Gabriel',c:'var(--gab)',vcls:'v-gab'},
-  {k:'cin',n:'Cino',   c:'var(--cin)',vcls:'v-cin'},
-  {k:'die',n:'Diego',  c:'var(--die)',vcls:'v-die'},
-  {k:'sit',n:'Site',   c:'var(--sit)',vcls:'v-sit'}
+  {k:'gab',n:'Gabriel',c:'var(--gab)',cls:'vg'},
+  {k:'cin',n:'Cino',   c:'var(--cin)',cls:'vc'},
+  {k:'die',n:'Diego',  c:'var(--die)',cls:'vd'},
+  {k:'sit',n:'Site',   c:'var(--sit)',cls:'vs'}
 ];
-var TC = {forte:'fo',normal:'no',fraco:'fr',vale:'va'};
-
+var TC = {forte:'fo',normal:'no',vale:'va'};
+ 
 function f(v){if(v===undefined||v===null||isNaN(v))return'--';return v>=1000?'R$'+(v/1000).toFixed(1)+'k':v>0?'R$'+Math.round(v):'R$0';}
 function fi(v){return v>=1000?'R$ '+(v/1000).toFixed(1)+'k':'R$ '+Math.round(v);}
-function pct(v,t){return Math.min(Math.round(v/t*100),100);}
-
-function parseCSV(text) {
-  var lines = text.trim().split('\n');
-  var result = {};
-  // skip header (line 0)
-  for(var i=1;i<lines.length;i++){
-    var cols = lines[i].split(',');
-    var dia = parseInt(cols[0]);
-    if(isNaN(dia)) continue;
-    var gab = parseFloat(cols[1]) || 0;
-    var cin = parseFloat(cols[2]) || 0;
-    var die = parseFloat(cols[3]) || 0;
-    var sit = parseFloat(cols[4]) || 0;
-    // só considera lançado se pelo menos um valor > 0
-    if(gab>0||cin>0||die>0||sit>0){
-      result[dia] = {gab:gab, cin:cin, die:die, sit:sit};
-    }
-  }
-  return result;
-}
-
-function calcMetas(lancados) {
-  // saldo por vendedor
-  var sd = {};
+function p(v,t){return Math.min(Math.round(v/t*100),100);}
+ 
+function calcMetas(lanc){
+  var sd={};
   VK.forEach(function(v){
-    var soma = 0;
-    Object.values(lancados).forEach(function(row){soma += (row[v]||0);});
-    sd[v] = Math.max(0, METAS[v]-soma);
+    var s=0;lanc.forEach(function(r){if(r[v])s+=r[v];});
+    sd[v]=Math.max(0,METAS[v]-s);
   });
-  // dias futuros
-  var fut = DIAS.filter(function(d){return !lancados[d.d];});
-  var pt = {};
-  VK.forEach(function(v){pt[v]=fut.reduce(function(s,d){return s+(PW[v][d.t]||0);},0)||1;});
-  var u = {};
-  VK.forEach(function(v){u[v]=sd[v]/pt[v];});
-
+  var lancDias={};
+  lanc.forEach(function(r){lancDias[r.dia]=r;});
+  var fut=DIAS.filter(function(d){return !lancDias[d.d];});
+  var pt={};
+  VK.forEach(function(v){pt[v]=fut.reduce(function(s,d){return s+(PW[v][d.t]||1.0);},0)||1;});
+  var u={};VK.forEach(function(v){u[v]=sd[v]/pt[v];});
+ 
   return DIAS.map(function(d){
-    var lc = !!lancados[d.d];
-    var row = {d:d.d, lb:d.lb, t:d.t, tg:d.tg, lancado:lc};
+    var row=lancDias[d.d];
+    var lc=!!row;
+    var res={d:d.d,lb:d.lb,t:d.t,tg:d.tg,lc:lc};
     VK.forEach(function(v){
-      if(lc){
-        row[v] = lancados[d.d][v]||0;
-      } else {
-        var ar = v==='sit'?500:1000;
-        row[v] = Math.round(u[v]*(PW[v][d.t]||0)/ar)*ar;
-      }
+      res[v]=lc?(row[v]||0):Math.round(u[v]*(PW[v][d.t]||1.0)/(v==='sit'?500:1000))*(v==='sit'?500:1000);
     });
-    row.tot = VK.reduce(function(s,v){return s+row[v];},0);
-    return row;
+    res.tot=VK.reduce(function(s,v){return s+res[v];},0);
+    return res;
   });
 }
-
-function render(lancados, lastUpdate) {
-  var dias = calcMetas(lancados);
-  var sr = {};
-  VK.forEach(function(v){
-    var s=0;
-    Object.values(lancados).forEach(function(row){s+=(row[v]||0);});
-    sr[v]=s;
-  });
-  var tr = VK.reduce(function(s,v){return s+sr[v];},0);
-  var sd = TOT - tr;
-  var p = pct(tr, TOT);
-  var lancCount = Object.keys(lancados).length;
-  var dr = DIAS.filter(function(d){return !lancados[d.d];}).length;
-
-  // Status
-  document.getElementById('statusDot').className = 'status-dot';
-  document.getElementById('statusText').textContent = 'Dados atualizados ' + lastUpdate + ' · ' + lancCount + ' dias lançados';
-  document.getElementById('liveDot').className = 'live-dot';
-  document.getElementById('liveText').textContent = 'Ao vivo';
-
+ 
+function render(lanc, timeStr){
+  var dias=calcMetas(lanc);
+  var sr={};
+  VK.forEach(function(v){var s=0;lanc.forEach(function(r){if(r[v])s+=r[v];});sr[v]=s;});
+  var tr=VK.reduce(function(s,v){return s+sr[v];},0);
+  var sd=TOT-tr;
+  var pp=p(tr,TOT);
+  var lc=lanc.length;
+  var dr=DIAS.filter(function(d){return !lanc.find(function(r){return r.dia===d.d;});}).length;
+ 
+  // Badge e status
+  var badge=document.getElementById('badge');
+  badge.className='live-badge ok';
+  document.getElementById('badgeTxt').textContent='Ao vivo';
+  document.getElementById('sDot').className='sdot ok';
+  document.getElementById('sTxt').textContent='Atualizado às '+timeStr+' · '+lc+' dias lançados na planilha';
+ 
   // KPIs
-  var bc = p>=100?'var(--green)':p>=70?'var(--blue)':'var(--gold)';
-  document.getElementById('kpis').innerHTML =
-    '<div class="kcard"><div class="klbl">Realizado</div><div class="kval" style="color:var(--green);">'+fi(tr)+'</div><div class="ksub">'+p+'% da meta</div></div>'+
+  var bc=pp>=100?'var(--green)':pp>=70?'var(--blue)':'var(--gold)';
+  document.getElementById('kpis').innerHTML=
+    '<div class="kcard"><div class="klbl">Realizado</div><div class="kval" style="color:var(--green);">'+fi(tr)+'</div><div class="ksub">'+pp+'% da meta</div></div>'+
     '<div class="kcard"><div class="klbl">Saldo restante</div><div class="kval" style="color:'+bc+';">'+fi(Math.max(0,sd))+'</div><div class="ksub">Meta R$840k</div></div>'+
-    '<div class="kcard"><div class="klbl">Dias lançados</div><div class="kval">'+lancCount+'</div><div class="ksub">de 26 úteis</div></div>'+
+    '<div class="kcard"><div class="klbl">Dias lançados</div><div class="kval">'+lc+'</div><div class="ksub">de 26 úteis</div></div>'+
     '<div class="kcard"><div class="klbl">Dias restantes</div><div class="kval">'+dr+'</div><div class="ksub">abertos</div></div>';
-
+ 
   // Vendor bars
-  var vb = '';
+  var vb='';
   VC.forEach(function(v){
-    var vp = pct(sr[v.k], METAS[v.k]);
-    var vc = vp>=100?'var(--green)':vp>=60?v.c:'var(--gold)';
-    vb += '<div class="vcard '+v.vcls+'">'+
-      '<div class="vname">'+v.n+'</div>'+
+    var vp=p(sr[v.k],METAS[v.k]);
+    var vc=vp>=100?'var(--green)':vp>=60?v.c:'var(--gold)';
+    vb+='<div class="vcard '+v.cls+'"><div class="vname">'+v.n+'</div>'+
       '<div class="vreal" style="color:'+vc+';">'+fi(sr[v.k])+'</div>'+
       '<div class="vmeta">'+vp+'% · meta '+fi(METAS[v.k])+'</div>'+
-      '<div class="vbar-bg"><div class="vbar-fill" style="width:'+vp+'%;background:'+vc+';"></div></div>'+
-      '</div>';
+      '<div class="vbar-bg"><div class="vbar-fill" style="width:'+vp+'%;background:'+vc+';"></div></div></div>';
   });
-  document.getElementById('vbars').innerHTML = vb;
-
-  // Progress
-  var bc2 = p>=100?'var(--green)':p>=70?'var(--blue)':'var(--gold)';
-  document.getElementById('prog').innerHTML =
-    '<div class="prog-header">'+
-    '<div class="prog-title">Progresso geral — agosto 2026</div>'+
-    '<div class="prog-pct" style="color:'+bc2+';">'+p+'%</div></div>'+
-    '<div class="prog-bar-bg"><div class="prog-bar-fill" style="width:'+p+'%;background:'+bc2+';"></div></div>'+
-    '<div class="prog-sub">'+
-    '<span>'+VC.map(function(v){return '<span style="color:'+v.c+';font-weight:600;">'+v.n+' '+f(sr[v.k])+'</span>';}).join(' &nbsp;·&nbsp; ')+'</span>'+
-    '<span style="color:'+(sd<=0?'var(--green)':'var(--muted)')+';font-weight:600;">'+(sd>0?'faltam '+fi(sd):'✓ META ATINGIDA!')+'</span>'+
-    '</div>';
-
+  document.getElementById('vbars').innerHTML=vb;
+ 
+  // Progress bar
+  var bc2=pp>=100?'var(--green)':pp>=70?'var(--blue)':'var(--gold)';
+  document.getElementById('prog').innerHTML=
+    '<div class="prog-hdr"><div class="prog-title">Progresso geral — agosto 2026</div><div class="prog-pct" style="color:'+bc2+';">'+pp+'%</div></div>'+
+    '<div class="prog-bg"><div class="prog-fill" style="width:'+pp+'%;background:'+bc2+';"></div></div>'+
+    '<div class="prog-sub"><span>'+VC.map(function(v){return '<span style="color:'+v.c+';font-weight:600;">'+v.n+' '+f(sr[v.k])+'</span>';}).join(' &nbsp;·&nbsp; ')+'</span>'+
+    '<span style="color:'+(sd<=0?'var(--green)':'var(--muted)')+';font-weight:600;">'+(sd>0?'faltam '+fi(sd):'✓ META ATINGIDA!')+'</span></div>';
+ 
   // Table
-  var tb = '';
+  var tb='';
   dias.forEach(function(d){
-    var rt = VK.reduce(function(s,v){return s+(d.lancado?(lancados[d.d]?lancados[d.d][v]||0:0):0);},0);
-    var dif = d.lancado?rt-d.tot:null;
-    var tc = TC[d.t]||'no';
-    var tgH = d.tg?'<span class="tg '+tc+'">'+d.tg+'</span>':'';
-    tb += '<tr class="'+(d.lancado?'done':'')+'">' +
-      '<td>'+d.lb+tgH+'</td>'+
-      '<td class="cg">'+f(d.gab)+'</td>'+
-      '<td class="cc">'+f(d.cin)+'</td>'+
-      '<td class="cd">'+f(d.die)+'</td>'+
-      '<td class="cs">'+f(d.sit)+'</td>'+
-      '<td class="ct">'+f(d.tot)+'</td>'+
-      '<td class="cr">'+(d.lancado?f(rt):'--')+'</td>'+
-      '<td>'+(dif!==null?(dif>=0?'<span class="cup">+'+f(dif)+'</span>':'<span class="cdn">'+f(dif)+'</span>'):'--')+'</td>'+
-      '</tr>';
+    var lancRow=lanc.find(function(r){return r.dia===d.d;});
+    var rt=d.lc?VK.reduce(function(s,v){return s+(lancRow?lancRow[v]||0:0);},0):0;
+    var dif=d.lc?rt-d.tot:null;
+    var tc=TC[d.t]||'no';
+    var tgH=d.tg?'<span class="tg '+tc+'">'+d.tg+'</span>':'';
+    tb+='<tr class="'+(d.lc?'done':'')+'"><td>'+d.lb+tgH+'</td>'+
+      '<td class="cg">'+f(d.gab)+'</td><td class="cc">'+f(d.cin)+'</td>'+
+      '<td class="cd">'+f(d.die)+'</td><td class="cs">'+f(d.sit)+'</td>'+
+      '<td class="ct">'+f(d.tot)+'</td><td class="cr">'+(d.lc?f(rt):'--')+'</td>'+
+      '<td>'+(dif!==null?(dif>=0?'<span class="cup">+'+f(dif)+'</span>':'<span class="cdn">'+f(dif)+'</span>'):'--')+'</td></tr>';
   });
-  document.getElementById('tbody').innerHTML = tb;
-
-  // Footer totals
-  document.getElementById('tfoot').innerHTML = '<tr>'+
-    '<td>Total</td>'+
+  document.getElementById('tbody').innerHTML=tb;
+  document.getElementById('tfoot').innerHTML='<tr><td>Total</td>'+
     '<td class="cg">'+f(dias.reduce(function(s,d){return s+d.gab;},0))+'</td>'+
     '<td class="cc">'+f(dias.reduce(function(s,d){return s+d.cin;},0))+'</td>'+
     '<td class="cd">'+f(dias.reduce(function(s,d){return s+d.die;},0))+'</td>'+
     '<td class="cs">'+f(dias.reduce(function(s,d){return s+d.sit;},0))+'</td>'+
     '<td class="ct">'+f(dias.reduce(function(s,d){return s+d.tot;},0))+'</td>'+
     '<td class="cr">'+f(tr)+'</td>'+
-    '<td style="color:'+(sd<=0?'var(--green)':'var(--muted)')+';font-weight:600;">'+(sd>0?f(sd):'META!')+'</td>'+
-    '</tr>';
+    '<td style="color:'+(sd<=0?'var(--green)':'var(--muted)')+';font-weight:600;">'+(sd>0?f(sd):'META!')+'</td></tr>';
 }
-
-function loadData() {
-  document.getElementById('statusDot').className = 'status-dot loading';
-  document.getElementById('statusText').textContent = 'Atualizando dados da planilha...';
-  document.getElementById('liveDot').className = 'live-dot';
-  document.getElementById('liveText').textContent = 'Atualizando...';
-
-  // Cache buster para evitar dados desatualizados
-  var url = SHEET_CSV + '&t=' + Date.now();
-
-  fetch(url)
-    .then(function(r){
-      if(!r.ok) throw new Error('HTTP '+r.status);
-      return r.text();
+ 
+function setError(msg){
+  var badge=document.getElementById('badge');
+  badge.className='live-badge err';
+  document.getElementById('badgeTxt').textContent='Erro';
+  document.getElementById('sDot').className='sdot err';
+  document.getElementById('sTxt').textContent=msg+' — clique em Atualizar para tentar novamente';
+}
+ 
+function loadData(){
+  document.getElementById('sDot').className='sdot';
+  document.getElementById('sTxt').textContent='Buscando dados da planilha...';
+ 
+  fetch(API + '?t=' + Date.now())
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+    .then(function(data){
+      var now=new Date();
+      var t=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+      // filtra só linhas com pelo menos um valor > 0
+      var lanc=data.filter(function(r){return r.gab>0||r.cin>0||r.die>0||r.sit>0;});
+      render(lanc, t);
     })
-    .then(function(text){
-      var lancados = parseCSV(text);
-      var now = new Date();
-      var timeStr = now.toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
-      render(lancados, 'às '+timeStr);
-    })
-    .catch(function(err){
-      document.getElementById('statusDot').className = 'status-dot error';
-      document.getElementById('statusText').textContent = 'Erro ao carregar — verifique se a planilha está publicada · ' + err.message;
-      document.getElementById('liveDot').className = 'live-dot';
-      document.getElementById('liveDot').style.background = 'var(--red)';
-      document.getElementById('liveText').textContent = 'Erro';
+    .catch(function(e){
+      setError('Erro ao carregar ('+e.message+')');
     });
 }
-
-// Carrega ao abrir e atualiza a cada 60 segundos
+ 
 loadData();
 setInterval(loadData, 60000);
 </script>
 </body>
 </html>
+ 
